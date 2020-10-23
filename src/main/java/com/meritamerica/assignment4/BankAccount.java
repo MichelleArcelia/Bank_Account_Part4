@@ -51,9 +51,8 @@ public class BankAccount {
 	
 	}
 		
-// ----------------------------- Account Number --------------------------------
-	
-	// METHOD ADDED TO MAKE CDACCOUNT LINE 26 WORK
+
+// METHOD ADDED TO MAKE CDACCOUNT LINE 26 WORK
 	 public BankAccount(long nextAccountNumber, double balance, double interestRate) {
 		 	this.balance = balance;
 			this.interestRate = interestRate;
@@ -61,6 +60,9 @@ public class BankAccount {
 			this.accountOpenedOn = d;
 			this.accountNumber = nextAccountNumber;
 	}
+	 
+// ----------------------------- Account Number --------------------------------	
+	 
 
 	public long getAccountNumber() {
 		 return this.accountNumber;
@@ -133,31 +135,6 @@ public class BankAccount {
 
 // -------------------------- Assignment 3 Amendments ---------------------------
 
-/*
-	static BankAccount readFromString(String accountData) throws ParseException {
-		
-		SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
-		
-		try {
-			String storage1[] = accountData.split(",");
-			
-			int formattedAccount = Integer.parseInt(storage1[0]);
-			double formattedBalance = Double.parseDouble(storage1[1]);
-			double formattedInterest = Double.parseDouble(storage1[2]);
-			Date formattedDate = (Date) dateFormatter.parse(storage1[3]);
-		
-			//Date formattedDate = Date.valueOf(storage1[3]);
-			
-			BankAccount formattedBank = new BankAccount(formattedAccount, formattedBalance, formattedInterest, formattedDate);
-			
-			return formattedBank;
-		}
-		catch (ParseException e) {
-			return null;
-		}
-	}
-*/
-
 	public String writeToSpring() {
 		
 		SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
@@ -165,3 +142,5 @@ public class BankAccount {
 		return this.accountNumber + "," + this.balance + "," + this.interestRate + "," + dateFormatter.format(this.accountOpenedOn); 	
 		}
 }
+
+// -------------------------- Assignment 4 Amendments ---------------------------
