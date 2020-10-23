@@ -63,6 +63,7 @@ public class CDAccount extends BankAccount {
 	public int getTerm() {
 		return offering.getTerm();
 	}
+	
 
 	public Date getStartDate() {
 		return this.date;
