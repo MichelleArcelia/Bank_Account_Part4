@@ -8,7 +8,6 @@ public class FraudQueue {
 	
 	static List<Transaction> fraudList = new ArrayList<Transaction> ();
 
-	
 	public FraudQueue() {
 		
 	}
