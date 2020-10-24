@@ -4,8 +4,8 @@
  * PART 4
  */
 
-
 package com.meritamerica.assignment4;
+
 import java.io.*;
 import java.util.*;
 
@@ -17,18 +17,18 @@ public class MeritBank {
 	private static int counter = 0;
 
 	public static void addAccountHolder(AccountHolder accountHolder) {
-		
-		if(counter == myAccountHolder.length) {
-		
-		AccountHolder[] myAccountHolder1 = new AccountHolder[counter + 1];
-		
-		for (int i = 0; i < counter; i++) {
-			myAccountHolder1[i] = myAccountHolder[i];
-		}
-			
+
+		if (counter == myAccountHolder.length) {
+
+			AccountHolder[] myAccountHolder1 = new AccountHolder[counter + 1];
+
+			for (int i = 0; i < counter; i++) {
+				myAccountHolder1[i] = myAccountHolder[i];
+			}
+
 			myAccountHolder = myAccountHolder1;
 		}
-			myAccountHolder[counter++] = accountHolder;
+		myAccountHolder[counter++] = accountHolder;
 
 	}
 
@@ -104,68 +104,66 @@ public class MeritBank {
 		return value;
 	}
 
-	static boolean readFromFile(String filename)  {
-		//CDOffering[] cdOffering = null; // CANT BE NULL
+	static boolean readFromFile(String filename) {
+		// CDOffering[] cdOffering = null; // CANT BE NULL
 		AccountHolder accountHolders;
 		try {
-			
-			//String accountHolder = br.readLine();
-			
+
+			// String accountHolder = br.readLine();
+
 			FileReader fr = new FileReader(filename);
 			BufferedReader br = new BufferedReader(fr);
-			
+
 			nextAccount = Long.parseLong(br.readLine());
-			
+
 			int numberOfCDOfferings = Integer.parseInt(br.readLine());
-			
+
 			myCDOffering = new CDOffering[numberOfCDOfferings];
-			for(int i =0; i < numberOfCDOfferings; i++) {
+			for (int i = 0; i < numberOfCDOfferings; i++) {
 				myCDOffering[i] = CDOffering.readFromString(br.readLine());
-				
-				
+
 			}
-			
-			for(CDOffering o: myCDOffering) {
+
+			for (CDOffering o : myCDOffering) {
 				System.out.println(o.getInterestRate());
 			}
-				
+
 			int numberOfAccountHolders = Integer.parseInt(br.readLine());
-			
+
 			System.out.println("NUMBER OF ACCOUNT HOLDERS " + numberOfAccountHolders);
-			
-			
-			for(int i = 0; i < numberOfAccountHolders; i++) {
-				
-				String x = br.readLine(); 
-				
-				addAccountHolder(accountHolders = AccountHolder.readFromString(x)) ;
-				
-			System.out.println("String: " + x);
-				
-			int numberOfCheckingAccount = Integer.parseInt(br.readLine());
-			
-			for(int j =0; j < numberOfCheckingAccount; j++) {
-				accountHolders.addCheckingAccount(CheckingAccount.readFromString(br.readLine()));
-				System.out.println("CHECKING BALANCE HERE:" + accountHolders.getCheckingBalance());
-			}
-			int numberOfSavingsAccounts = Integer.parseInt(br.readLine());
-			
-			for(int k =0; k < numberOfSavingsAccounts; k++) {
-				accountHolders.addSavingsAccount(SavingsAccount.readFromString(br.readLine()));
-			}
-			int numberOfCDAccount = Integer.parseInt(br.readLine());
-			
-			for(int p =0; p < numberOfCDAccount; p++) {
-				accountHolders.addCDAccount(CDAccount.readFromString(br.readLine()));
-			}
-			
+
+			for (int i = 0; i < numberOfAccountHolders; i++) {
+
+				String x = br.readLine();
+
+				addAccountHolder(accountHolders = AccountHolder.readFromString(x));
+
+				System.out.println("String: " + x);
+
+				int numberOfCheckingAccount = Integer.parseInt(br.readLine());
+
+				for (int j = 0; j < numberOfCheckingAccount; j++) {
+					accountHolders.addCheckingAccount(CheckingAccount.readFromString(br.readLine()));
+					System.out.println("CHECKING BALANCE HERE:" + accountHolders.getCheckingBalance());
+				}
+				int numberOfSavingsAccounts = Integer.parseInt(br.readLine());
+
+				for (int k = 0; k < numberOfSavingsAccounts; k++) {
+					accountHolders.addSavingsAccount(SavingsAccount.readFromString(br.readLine()));
+				}
+				int numberOfCDAccount = Integer.parseInt(br.readLine());
+
+				for (int p = 0; p < numberOfCDAccount; p++) {
+					accountHolders.addCDAccount(CDAccount.readFromString(br.readLine()));
+				}
+
 			}
 			br.close();
 			return true;
 		}
-		
-		catch(Exception e) {
-			
+
+		catch (Exception e) {
+
 			System.out.println("Oops Sorry Not Here");
 			return false;
 		}
@@ -210,18 +208,73 @@ public class MeritBank {
 
 	static AccountHolder[] sortAccountHolders() {
 		Arrays.sort(myAccountHolder);
-		
-		for(AccountHolder a: myAccountHolder) {
+
+		for (AccountHolder a : myAccountHolder) {
 			System.out.println("BALANCE HERE:" + a.getCombinedBalance());
 		}
-		
+
 		System.out.println("INDEX AMOUNT: " + myAccountHolder.length);
 		return myAccountHolder;
-		
+
 	}
 
 	static void setNextAccountNumber(long nextAccountNumber) {
 
 	}
 
+	//--------------------ASSIGNMENT 4 METHODS --------------------------------
+	public static void processTransaction(DepositTransaction depositTransaction) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public static void processTransaction(WithdrawTransaction withdrawTransaction) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public static void processTransaction(TransferTransaction transferTransaction) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public static double recursiveFutureValue(double amount, int years, double interestRate) {
+		// Existing futureValue methods that used to call Math.pow() should now call
+		// this method
+
+		return interestRate;
+
+	}
+	public static boolean processTransaction(Transaction transaction) throws NegativeAmountException, ExceedsAvailableBalanceException, ExceedsFraudSuspicionLimitException{
+		/*
+		   1. If transaction does not violate any constraints, deposit/withdraw values from the relevant BankAccounts 
+		  	  and add the transaction to the relevant BankAccounts
+		   2. If the transaction violates any of the basic constraints (negative amount, exceeds available balance) 
+		      the relevant exception should be thrown and the processing should terminate
+		   3. If the transaction violates the $1,000 suspicion limit, it should simply be added to the FraudQueue for future processing
+		 */
+		
+		
+		return false;
+	}
+	public static FraudQueue getFraudQueue() {
+		
+		
+		return null;
+		
+	}
+	public static BankAccount getBankAccount(long accountId) {
+		//Return null if account not found
+
+		
+		return null;
+
+	}
+	
+//	static boolean readFromFile(String fileName) {
+//	//1. Should also read BankAccount transactions and the FraudQueue
+//	}
+//	static boolean writeToFile(String fileName) {
+//	//Should also write BankAccount transactions and the FraudQueue
+//	}
 }
