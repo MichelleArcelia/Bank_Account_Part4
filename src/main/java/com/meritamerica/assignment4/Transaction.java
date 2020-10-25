@@ -9,8 +9,8 @@ public abstract class Transaction {
 //============== VARIABLES ==============
 
 	private double amount; 
-	BankAccount sourceAccountNum = 0;
-	BankAccount targetAccountNum = 0; 
+	BankAccount sourceAccountNum;
+	BankAccount targetAccountNum; 
 	java.util.Date date;
 	boolean isProcessed = false;
 	String rejectionReason;
@@ -39,73 +39,82 @@ public abstract class Transaction {
 	public BankAccount getTargetAccount() {
 		
 		return targetAccountNum;
-		
 	}
+	
 	public void setTargetAccount(BankAccount targetAccount) {
 		
+		this.targetAccountNum = targetAccountNum;
 	}
 	
-	
-	
+//------------- GET/SET AMOUNT --------------- 		
 	
 	public double getAmount() {
 		
-		
-		return 0;
-		
+		return amount;
 	}
+	
 	public void setAmount(double amount) {
 		
-	}
+		this.amount = amount;
+	}	
+	
+//-------------- GET/SET DATE --------------- 	
+	
 	public java.util.Date getTransactionDate(){
 		
-		
-		return null;
-		
+		return date;
 	}
+	
 	public void setTransactionDate(java.util.Date date) {
 		
+		this.date = date;
 	}
+	
+//----------- WRITE TO STRING --------------- 
+	
 	public String writeToString() {
 		
-		return null;
+		System.out.println("TRANSACTION TESTING - WRITE TO STRING - target, source, amount, date");
+		
+		return "TargetAccountNum: " + this.targetAccountNum + "," + "SourceAccountNum: " + this.sourceAccountNum + "," + "Amount: " + this.amount + "DATE: " + this.date;
 		
 	}
+	
+//----------- READ FROM STRING --------------- 
+	
 	public static Transaction readFromString(String transactionDataString) {
 		
 		return null;
 		
 	}
+	
+//----------- EXCEPTIONS THROWN --------------- 	
+	
 	public abstract void process() throws NegativeAmountException, ExceedsAvailableBalanceException, ExceedsFraudSuspicionLimitException;
 	
+	
+// -------- PROCESSED BY FRAUD TEAM ----------	
+
 	public boolean isProcessedByFraudTeam() {
 		
-		return false;
-		
+		return isProcessed;
 	}
+	
 	public void setProcessedByFraudTeam(boolean isProcessed) {
 		
+		this.isProcessed = isProcessed;
 	}
+	
 	public String getRejectionReason() {
 		
-		return null;
+		return rejectionReason;
 		
 	}
-	public void setRejectionReason(String reason) {
+	
+	public void setRejectionReason(String rejectionReason) {
+		
+		this.rejectionReason = rejectionReason;
 		
 	}
 
 }
-
-
-
-/*
-public Transaction (double amount, long sourceAccountNum, long targetAccountNum, java.util.Date date) {
-	
-	this.amount = amount;
-	this.sourceAccountNum = sourceAccountNum;
-	this.targetAccountNum = targetAccountNum;
-	this.date = date;
-	
-}
-*/
