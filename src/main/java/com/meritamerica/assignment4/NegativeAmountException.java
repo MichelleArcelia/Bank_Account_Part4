@@ -1,9 +1,16 @@
+
+
+
+
+
 package com.meritamerica.assignment4;
 
 public class NegativeAmountException extends Exception {
 
-	public NegativeAmountException(String string) {
-		// TODO Auto-generated constructor stub
+	public NegativeAmountException(String errorMessage) {
+		
+		super(errorMessage);
+
 	}
 
 	/**
