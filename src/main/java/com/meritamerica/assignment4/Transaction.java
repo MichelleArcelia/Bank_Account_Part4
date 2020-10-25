@@ -19,11 +19,19 @@ public abstract class Transaction {
 	static SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
 	
 	
+	public Transaction(double amount2, long sourceAccountNum2, long targetAccountNum2, Date formattedDate) {
+		// TODO Auto-generated constructor stub
+	}
+
+	
+	
+	
 //============== GET & SET ==============
 	
 	
 //---------- GET/SET SOURCE ACCOUNT ---------- 	
 	
+
 	public BankAccount getSourceAccount() {
 		
 		return sourceAccountNum;
