@@ -11,6 +11,7 @@ public class FraudQueue {
 	public FraudQueue() {
 		
 	}
+	
 
 // -------------- ADD TRANSACTION -------------- 
 	
