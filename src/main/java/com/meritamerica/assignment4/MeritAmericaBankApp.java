@@ -7,4 +7,5 @@ public class MeritAmericaBankApp {
 		MeritBank.readFromFile("src/test/testMeritBank_good.txt");
 		
 	}	
+	
 }
