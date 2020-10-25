@@ -1,3 +1,12 @@
+/* Week 5 - Partner Pair Assignment #4
+ * Bank Account Part 4
+ * @date October 25, 2020
+ * PART 4
+ */
+
+
+
+
 package com.meritamerica.assignment4;
 
 import java.util.Date;
