@@ -38,7 +38,7 @@ public abstract class Transaction {
 	
 	public BankAccount getTargetAccount() {
 		
-		return null;
+		return targetAccountNum;
 		
 	}
 	public void setTargetAccount(BankAccount targetAccount) {
