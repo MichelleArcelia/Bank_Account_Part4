@@ -12,25 +12,21 @@ public abstract class Transaction {
 	private long sourceAccountNum = 0;
 	private long targetAccountNum = 0; 
 	java.util.Date date;
+	boolean isProcessed = false;
+	String rejectionReason;
+	static FraudQueue fraud;
 	
-//------------------ CONSTRUCTOR ------------------ 
-	
-	public Transaction (double amount, long sourceAccountNum, long targetAccountNum, java.util.Date date) {
-		
-		this.amount = amount;
-		this.sourceAccountNum = sourceAccountNum;
-		this.targetAccountNum = targetAccountNum;
-		this.date = date;
-		
-	}
+	static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 	
 	
-	
+//------------------ GET & SET ------------------	
 	
 	public BankAccount getSourceAccount() {
 		
-		return null;
+		return account;
 	}
+	
+	
 	public void setSourceAccount(BankAccount sourceAccount) {
 		
 	}
@@ -90,3 +86,16 @@ public abstract class Transaction {
 	}
 
 }
+
+
+
+/*
+public Transaction (double amount, long sourceAccountNum, long targetAccountNum, java.util.Date date) {
+	
+	this.amount = amount;
+	this.sourceAccountNum = sourceAccountNum;
+	this.targetAccountNum = targetAccountNum;
+	this.date = date;
+	
+}
+*/
