@@ -6,11 +6,11 @@ import java.util.Date;
 
 public abstract class Transaction {
 
-//------------------ VARIABLES ------------------
+//============== VARIABLES ==============
 
 	private double amount; 
-	private long sourceAccountNum = 0;
-	private long targetAccountNum = 0; 
+	BankAccount sourceAccountNum = 0;
+	BankAccount targetAccountNum = 0; 
 	java.util.Date date;
 	boolean isProcessed = false;
 	String rejectionReason;
@@ -19,17 +19,23 @@ public abstract class Transaction {
 	static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 	
 	
-//------------------ GET & SET ------------------	
+//============== GET & SET ==============
+	
+	
+//---------- GET/SET SOURCE ACCOUNT ---------- 	
 	
 	public BankAccount getSourceAccount() {
 		
-		return account;
+		return sourceAccountNum;
 	}
-	
 	
 	public void setSourceAccount(BankAccount sourceAccount) {
 		
+		this.sourceAccountNum = sourceAccountNum;
 	}
+
+//---------- GET/SET TARGET ACCOUNT ---------- 	
+	
 	public BankAccount getTargetAccount() {
 		
 		return null;
@@ -38,6 +44,10 @@ public abstract class Transaction {
 	public void setTargetAccount(BankAccount targetAccount) {
 		
 	}
+	
+	
+	
+	
 	public double getAmount() {
 		
 		
