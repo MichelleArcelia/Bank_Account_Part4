@@ -11,6 +11,7 @@ import java.util.Date;
 public class WithdrawTransaction extends Transaction{
 
 	private double amount;
+	private BankAccount targetAccount;
 
 	 public WithdrawTransaction(BankAccount targetAccount, double amount) {
 		
