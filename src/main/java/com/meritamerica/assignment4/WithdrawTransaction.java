@@ -27,13 +27,13 @@ public class WithdrawTransaction extends Transaction{
 		
 		if (amount < 0) {
 			
-			throw new NegativeAmountException("WARNING! Can not deposit a negative amount");
+			throw new NegativeAmountException("WARNING! Can not withdraw a negative amount");
 		}
 	
 		
 		else if (targetAccount.getBalance() < amount) {
 			
-			throw new ExceedsAvailableBalanceException("WARNING! Your deposit has exceeded the acceptable limit");
+			throw new ExceedsAvailableBalanceException("WARNING! You can not withdraw more than what is in the account!");
 		}
 		
 		
@@ -44,6 +44,8 @@ public class WithdrawTransaction extends Transaction{
 		}
 		
 		else {
+			
+			System.out.println("WITHDRAW AMOUNT:");
 			
 			targetAccount.withdraw(amount);
 		}
