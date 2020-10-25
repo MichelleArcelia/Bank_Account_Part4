@@ -1,7 +1,32 @@
 package com.meritamerica.assignment4;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public abstract class Transaction {
 
+//------------------ VARIABLES ------------------
+
+	private double amount; 
+	private long sourceAccountNum = 0;
+	private long targetAccountNum = 0; 
+	java.util.Date date;
+	
+//------------------ CONSTRUCTOR ------------------ 
+	
+	public Transaction (double amount, long sourceAccountNum, long targetAccountNum, java.util.Date date) {
+		
+		this.amount = amount;
+		this.sourceAccountNum = sourceAccountNum;
+		this.targetAccountNum = targetAccountNum;
+		this.date = date;
+		
+	}
+	
+	
+	
+	
 	public BankAccount getSourceAccount() {
 		
 		return null;
