@@ -16,7 +16,7 @@ public abstract class Transaction {
 	String rejectionReason;
 	static FraudQueue fraud;
 	
-	static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+	static SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
 	
 	
 //============== GET & SET ==============
@@ -84,8 +84,44 @@ public abstract class Transaction {
 	
 	public static Transaction readFromString(String transactionDataString) {
 		
-		return null;
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
 		
+		try {
+			
+			String Array1[] = transactionDataString.split(",");
+			double amount = Double.parseDouble(Array1[0]);
+			long sourceAccountNum = Integer.parseInt(Array1[1]);
+			long targetAccountNum = Integer.parseInt(Array1[2]);
+			Date formattedDate = dateFormatter.parse(Array1[3]);
+			
+// targetAccountNum is -1 for both withdraw & deposit - use this parameter to create either 
+// then accountNum is positive for DEPOSIT & negative for WITHDRAW			
+			
+			if(targetAccountNum == -1) {
+				
+				if(amount < 0) {
+					
+				WithdrawTransaction newTransaction = new WithdrawTransaction(amount, sourceAccountNum, targetAccountNum, formattedDate);
+					
+					return newTransaction;
+			}
+				
+				DepositTransaction newTransaction = new DepositTransaction(amount, sourceAccountNum, targetAccountNum, formattedDate);
+					
+					return newTransaction;
+			}
+
+// Transfer - transaction class non -1 targetAccountNum - use parameter to create class
+			
+				TransferTransaction newTransaction = new TransferTransaction(amount, sourceAccountNum, targetAccountNum, formattedDate);
+			
+					return newTransaction;
+		}
+		
+		catch (ParseException e) {
+			return null;
+			
+		}
 	}
 	
 //----------- EXCEPTIONS THROWN --------------- 	
