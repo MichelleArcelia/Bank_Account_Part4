@@ -121,7 +121,6 @@ public class MeritBank {
 			myCDOffering = new CDOffering[numberOfCDOfferings];
 			for (int i = 0; i < numberOfCDOfferings; i++) {
 				myCDOffering[i] = CDOffering.readFromString(br.readLine());
-
 			}
 
 			for (CDOffering o : myCDOffering) {
@@ -129,15 +128,12 @@ public class MeritBank {
 			}
 
 			int numberOfAccountHolders = Integer.parseInt(br.readLine());
-
 			System.out.println("NUMBER OF ACCOUNT HOLDERS " + numberOfAccountHolders);
 
 			for (int i = 0; i < numberOfAccountHolders; i++) {
 
 				String x = br.readLine();
-
 				addAccountHolder(accountHolders = AccountHolder.readFromString(x));
-
 				System.out.println("String: " + x);
 
 				int numberOfCheckingAccount = Integer.parseInt(br.readLine());
@@ -145,25 +141,43 @@ public class MeritBank {
 				for (int j = 0; j < numberOfCheckingAccount; j++) {
 					accountHolders.addCheckingAccount(CheckingAccount.readFromString(br.readLine()));
 					System.out.println("CHECKING BALANCE HERE:" + accountHolders.getCheckingBalance());
+					//ASSIGNMENT 4 - ADDING CHECKING TRANSACTIONS - START
+					int numberOfCheckingAccountTransaction = Integer.parseInt(br.readLine());
+					for (int  k= 0; k < numberOfCheckingAccountTransaction; k++) {
+						accountHolders.getCheckingAccounts()[j].addTransaction(Transaction.readFromString(br.readLine()));
+						
+					}
+					//ASSIGNMENT 4 - ADDING CHECKING TRANSACTIONS - END
 				}
-				int numberOfSavingsAccounts = Integer.parseInt(br.readLine());
+				
 
+
+				int numberOfSavingsAccounts = Integer.parseInt(br.readLine());
 				for (int k = 0; k < numberOfSavingsAccounts; k++) {
 					accountHolders.addSavingsAccount(SavingsAccount.readFromString(br.readLine()));
+					//ASSIGNMENT 4 - ADDING SAVINGS TRANSACTIONS - START
+					int numberOfSavingsTransactions = Integer.parseInt(br.readLine());
+					for (int j = 0; j < numberOfSavingsTransactions; j++) {
+						accountHolders.getSavingsAccounts()[k].addTransaction(Transaction.readFromString(br.readLine()));
+					}
+					//ASSIGNMENT 4 - ADDING SAVINGS TRANSACTIONS - END
 				}
+	
 				int numberOfCDAccount = Integer.parseInt(br.readLine());
-
 				for (int p = 0; p < numberOfCDAccount; p++) {
 					accountHolders.addCDAccount(CDAccount.readFromString(br.readLine()));
+					//ASSIGNMENT 4 - ADDING CD TRANSACTIONS - START
+					int numberOfCDTransactions = Integer.parseInt(br.readLine());
+					for (int j = 0; j < numberOfCDTransactions; j++) {
+						accountHolders.getCDAccounts()[p].addTransaction(Transaction.readFromString(br.readLine()));
+					}
+					//ASSIGNMENT 4 - ADDING CD TRANSACTIONS - END
 				}
-
 			}
 			br.close();
 			return true;
 		}
-
 		catch (Exception e) {
-
 			System.out.println("Oops Sorry Not Here");
 			return false;
 		}
@@ -223,20 +237,6 @@ public class MeritBank {
 	}
 
 	//--------------------ASSIGNMENT 4 METHODS --------------------------------
-	public static void processTransaction(DepositTransaction depositTransaction) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public static void processTransaction(WithdrawTransaction withdrawTransaction) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public static void processTransaction(TransferTransaction transferTransaction) {
-		// TODO Auto-generated method stub
-
-	}
 
 	public static double recursiveFutureValue(double amount, int years, double interestRate) {
 		// Existing futureValue methods that used to call Math.pow() should now call
@@ -253,7 +253,7 @@ public class MeritBank {
 		      the relevant exception should be thrown and the processing should terminate
 		   3. If the transaction violates the $1,000 suspicion limit, it should simply be added to the FraudQueue for future processing
 		 */
-		
+		transaction.process();
 		
 		return false;
 	}
@@ -265,9 +265,26 @@ public class MeritBank {
 	}
 	public static BankAccount getBankAccount(long accountId) {
 		//Return null if account not found
-
-		
-		return null;
+		//ArrayList<BankAccount> baArray = new ArrayList<BankAccount>();
+		BankAccount matchedBAccount = null;
+		for(AccountHolder ah : getAccountHolders()) {
+			for(CDAccount cdA : ah.getCDAccounts()) {
+				if(cdA.getAccountNumber() == accountId) {
+					matchedBAccount = cdA;
+				}
+			}
+			for(CheckingAccount ca : ah.getCheckingAccounts()) {
+				if(ca.getAccountNumber() == accountId) {
+					matchedBAccount = ca;
+				}
+			}
+			for(SavingsAccount sa : ah.getSavingsAccounts()) {
+				if(sa.getAccountNumber() == accountId) {
+					matchedBAccount = sa;
+				}
+			}
+		}
+		return matchedBAccount;
 
 	}
 	

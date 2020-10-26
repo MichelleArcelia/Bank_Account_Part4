@@ -449,6 +449,18 @@ public class AccountHolder implements Comparable<AccountHolder> {
 	CDAccount addCDAccount(CDOffering offering, double openingBalance) {
 		// 1. Should also add a deposit transaction with the opening balance
 		CDAccount newX = new CDAccount(offering, openingBalance);
+
+		if (openingBalance < 0) {
+			System.out.println("WARNING = Can not deposit a negative amount");
+			return null;
+		}
+		else if(openingBalance>1000) {
+			DepositTransaction dt = new	DepositTransaction(newX, openingBalance);
+			dt.setRejectionReason("Over 1000");
+			//MeritBank.processTransaction(null);
+			return null;
+		}
+		
 		CDAccount[] newCDStorage = new CDAccount[cdAccountStorage.length + 1];
 		for (int i = 0; i < newCDStorage.length - 1; i++) {
 			newCDStorage[i] = cdAccountStorage[i];

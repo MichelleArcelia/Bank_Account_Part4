@@ -10,44 +10,33 @@ import java.util.Date;
 
 public class DepositTransaction extends Transaction{
 
-	private double amount;
-	private BankAccount targetAccount;
+	//private double amount;
+	//private BankAccount targetAccount;
 
 	 public DepositTransaction(BankAccount targetAccount, double amount) {
-		
-		this.targetAccount = targetAccount;
-		this.amount = amount;
+
+		//this.targetAccount = targetAccount;
+		setTargetAccount(targetAccount);
+		setAmount(amount);
+		//super.amount = amount;
 		
 	}
 
 	@Override
 	public void process()
 			throws NegativeAmountException, ExceedsAvailableBalanceException, ExceedsFraudSuspicionLimitException {
-		
-		
-		if (amount < 0) {
-			
+		if (getAmount() < 0) {
 			throw new NegativeAmountException("WARNING! Can not deposit a negative amount");
 		}
-	
-		
-		else if (targetAccount.getBalance() > 250000) {
-			
+		else if (getTargetAccount().getBalance() > 250000) {
 			throw new ExceedsAvailableBalanceException("WARNING! Your deposit has exceeded the acceptable limit");
 		}
-		
-		
-		else if (amount > 1000) {
-			
+		else if (getAmount() > 1000) {
 			throw new ExceedsFraudSuspicionLimitException("WARNING! We are sorry this transaction can not completed");
-			
 		}
-		
 		else {
-			
 			System.out.println("DEPOSIT AMOUNT:");
-			
-			targetAccount.deposit(amount);
+			getTargetAccount().deposit(getAmount());
 		}
 	}
 }

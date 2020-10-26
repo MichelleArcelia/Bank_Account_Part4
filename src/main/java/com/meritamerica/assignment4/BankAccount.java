@@ -24,6 +24,7 @@ public abstract class BankAccount {
 	private double interestRate;
 	double bankAccount;
 	private java.util.Date accountOpenedOn;
+	private List<Transaction> transactions = new ArrayList<Transaction>();
 
 	static SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 
@@ -61,6 +62,8 @@ public abstract class BankAccount {
 		this.accountOpenedOn = d;
 		this.accountNumber = nextAccountNumber;
 	}
+	
+	
 
 // ----------------------------- Account Number --------------------------------	
 
@@ -92,6 +95,10 @@ public abstract class BankAccount {
 
 // -------------------------------- Withdraw -----------------------------------
 
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+	
 	public boolean withdraw(double amount) {
 
 		if (amount < 0) {
@@ -144,12 +151,13 @@ public abstract class BankAccount {
 
 	public void addTransaction(Transaction transaction) {
 
+		transactions.add(transaction);
 	}
 
 	public List<Transaction> getTransactions() {
 		
 		
-		return null;
+		return transactions;
 
 	}
 }
