@@ -162,7 +162,8 @@ public class SolutionTest {
             	"123456789");
     	
     	CDAccount cdAccount = accountHolder.addCDAccount(new CDOffering(5, 0.03), 10000);
-        
+        System.out.println("##############");
+        System.out.println(cdAccount.toString());
         assertEquals(false, cdAccount.withdraw(500.0));
     }
     
@@ -343,7 +344,9 @@ public class SolutionTest {
     	assertEquals(3, MeritBank.getCDOfferings().length);
     	
     	AccountHolder[] sortedAccountHolders = MeritBank.sortAccountHolders();    	
-    	
+    	System.out.println("+++++++++++++++++++");
+    	System.out.println(sortedAccountHolders.length);
+    	System.out.println(sortedAccountHolders[0].getFirstName());
     	assertEquals(2051.0, sortedAccountHolders[0].getCombinedBalance(), 0);
     	assertEquals(2560.0, sortedAccountHolders[1].getCombinedBalance(), 0);
     	

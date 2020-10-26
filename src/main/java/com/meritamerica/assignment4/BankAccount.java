@@ -23,7 +23,9 @@ public abstract class BankAccount {
 	protected double balance;
 	private double interestRate;
 	double bankAccount;
-	private java.util.Date accountOpenedOn;
+	protected int term;
+	
+	protected java.util.Date accountOpenedOn;
 	private List<Transaction> transactions = new ArrayList<Transaction>();
 
 	static SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
@@ -66,6 +68,14 @@ public abstract class BankAccount {
 	
 
 // ----------------------------- Account Number --------------------------------	
+
+	public BankAccount(long accountNumber2, double balance2, double interestRate2, Date date, int term) {
+		this.accountNumber = accountNumber2;
+		this.balance = balance2;
+		this.interestRate = interestRate2;
+		this.accountOpenedOn = date;
+		this.term = term;
+	}
 
 	public long getAccountNumber() {
 		return this.accountNumber;

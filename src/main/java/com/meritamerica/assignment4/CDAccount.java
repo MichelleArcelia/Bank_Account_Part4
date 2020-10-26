@@ -7,6 +7,8 @@
 package com.meritamerica.assignment4;
 
 import com.meritamerica.assignment4.CDOffering;
+
+
 import com.meritamerica.assignment4.MeritBank;
 
 import java.text.ParseException;
@@ -19,13 +21,14 @@ import java.util.Formatter;
 
 public class CDAccount extends BankAccount {
 
+	
 	private CDOffering offering;
 	private double balance;
 	private Date date;
-	public static int term;
+	
 
 	public CDAccount(long accountNumber, double balance, double interestRate, Date date, int term) {
-		super(accountNumber, balance, interestRate);
+		super(accountNumber, balance, interestRate, date, term);
 	}
 
 	public CDAccount(CDOffering offering, double balance) {
@@ -59,11 +62,11 @@ public class CDAccount extends BankAccount {
 	}
 
 	public int getTerm() {
-		return offering.getTerm();
+		return this.term;
 	}
 
-	public Date getStartDate() {
-		return this.date;
+	public Date getOpenedOn() {
+		return this.accountOpenedOn;
 	}
 
 	public long getAccountNumber() {
@@ -78,12 +81,13 @@ public class CDAccount extends BankAccount {
 
 //Override the deposit and withdraw methods to return false. CD Accounts cannot deposit new funds or withdraw funds until the term is reached.
 
-	// -------------------------------- Withdraw -----------------------------------
+// -------------------------------- Withdraw -----------------------------------
 
 	public boolean withdraw(double amount) {
+		
 		Date currentDate = new Date();
 		Calendar cal = Calendar.getInstance();
-		cal.setTime(getStartDate());
+		cal.setTime(getOpenedOn());
 		cal.add(Calendar.YEAR, getTerm()); // to get previous year add -1
 		Date nextYear = cal.getTime();
 		if (nextYear.after(currentDate)) {
@@ -98,13 +102,12 @@ public class CDAccount extends BankAccount {
 		}
 	}
 
-	// --------------------------------- Deposit
-	// ------------------------------------
+// --------------------------------- Deposit ------------------------------------
 
 	public boolean deposit(double amount) {
 		Date currentDate = new Date();
 		Calendar cal = Calendar.getInstance();
-		cal.setTime(getStartDate());
+		cal.setTime(getOpenedOn());
 		cal.add(Calendar.YEAR, getTerm()); // to get previous year add -1
 		Date nextYear = cal.getTime();
 		if (nextYear.after(currentDate)) {
@@ -157,11 +160,11 @@ public class CDAccount extends BankAccount {
 
 			SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
 
-			Date date = dateFormatter.parse(newArray[3]);
+			Date openedOn = dateFormatter.parse(newArray[3]);
 
 			int term = Integer.parseInt(newArray[4]);
 
-			cd = new CDAccount(accountNumber, balance, interestRate, date, term);
+			cd = new CDAccount(accountNumber, balance, interestRate, openedOn, term);
 
 			for (String s : newArray) {
 				System.out.println(s);

@@ -105,6 +105,9 @@ public class MeritBank {
 	}
 
 	static boolean readFromFile(String filename) {
+		myAccountHolder = new AccountHolder[0];
+		counter = 0;
+		
 		// CDOffering[] cdOffering = null; // CANT BE NULL
 		AccountHolder accountHolders;
 		try {
@@ -119,6 +122,7 @@ public class MeritBank {
 			int numberOfCDOfferings = Integer.parseInt(br.readLine());
 
 			myCDOffering = new CDOffering[numberOfCDOfferings];
+			
 			for (int i = 0; i < numberOfCDOfferings; i++) {
 				myCDOffering[i] = CDOffering.readFromString(br.readLine());
 			}
@@ -141,6 +145,7 @@ public class MeritBank {
 				for (int j = 0; j < numberOfCheckingAccount; j++) {
 					accountHolders.addCheckingAccount(CheckingAccount.readFromString(br.readLine()));
 					System.out.println("CHECKING BALANCE HERE:" + accountHolders.getCheckingBalance());
+					
 					//ASSIGNMENT 4 - ADDING CHECKING TRANSACTIONS - START
 					int numberOfCheckingAccountTransaction = Integer.parseInt(br.readLine());
 					for (int  k= 0; k < numberOfCheckingAccountTransaction; k++) {
@@ -151,7 +156,7 @@ public class MeritBank {
 				}
 				
 
-
+//SAVINGS
 				int numberOfSavingsAccounts = Integer.parseInt(br.readLine());
 				for (int k = 0; k < numberOfSavingsAccounts; k++) {
 					accountHolders.addSavingsAccount(SavingsAccount.readFromString(br.readLine()));
@@ -166,6 +171,7 @@ public class MeritBank {
 				int numberOfCDAccount = Integer.parseInt(br.readLine());
 				for (int p = 0; p < numberOfCDAccount; p++) {
 					accountHolders.addCDAccount(CDAccount.readFromString(br.readLine()));
+					
 					//ASSIGNMENT 4 - ADDING CD TRANSACTIONS - START
 					int numberOfCDTransactions = Integer.parseInt(br.readLine());
 					for (int j = 0; j < numberOfCDTransactions; j++) {

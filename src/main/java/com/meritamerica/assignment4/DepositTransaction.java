@@ -28,7 +28,7 @@ public class DepositTransaction extends Transaction{
 		if (getAmount() < 0) {
 			throw new NegativeAmountException("WARNING! Can not deposit a negative amount");
 		}
-		else if (getTargetAccount().getBalance() > 250000) {
+		else if (getTargetAccount().getBalance() < this.getAmount()) {
 			throw new ExceedsAvailableBalanceException("WARNING! Your deposit has exceeded the acceptable limit");
 		}
 		else if (getAmount() > 1000) {

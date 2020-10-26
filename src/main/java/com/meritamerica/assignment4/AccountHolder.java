@@ -446,10 +446,11 @@ public class AccountHolder implements Comparable<AccountHolder> {
 		return savingsStorage[savingsStorage.length - 1] = savingsAccount;
 	}
 
-	CDAccount addCDAccount(CDOffering offering, double openingBalance) {
+	CDAccount addCDAccount(CDOffering offering, double openingBalance) throws ExceedsFraudSuspicionLimitException  {
 		// 1. Should also add a deposit transaction with the opening balance
 		CDAccount newX = new CDAccount(offering, openingBalance);
-
+		System.out.println("****************");
+		System.out.println(newX.toString());
 		if (openingBalance < 0) {
 			System.out.println("WARNING = Can not deposit a negative amount");
 			return null;
@@ -458,7 +459,10 @@ public class AccountHolder implements Comparable<AccountHolder> {
 			DepositTransaction dt = new	DepositTransaction(newX, openingBalance);
 			dt.setRejectionReason("Over 1000");
 			//MeritBank.processTransaction(null);
-			return null;
+			
+			throw new ExceedsFraudSuspicionLimitException();
+			
+			//return newX;
 		}
 		
 		CDAccount[] newCDStorage = new CDAccount[cdAccountStorage.length + 1];
@@ -466,6 +470,7 @@ public class AccountHolder implements Comparable<AccountHolder> {
 			newCDStorage[i] = cdAccountStorage[i];
 		}
 		cdAccountStorage = newCDStorage;
+		
 		return cdAccountStorage[cdAccountStorage.length - 1] = newX;
 	}
 
