@@ -6,6 +6,7 @@
 
 package com.meritamerica.assignment4;
 
+
 public class CDOffering {
 
 	private int term;

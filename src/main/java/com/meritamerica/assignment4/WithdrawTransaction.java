@@ -6,6 +6,7 @@
 
 package com.meritamerica.assignment4;
 
+
 import java.util.Date;
 
 public class WithdrawTransaction extends Transaction {

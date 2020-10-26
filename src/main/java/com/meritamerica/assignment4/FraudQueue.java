@@ -11,7 +11,6 @@ public class FraudQueue {
 	public FraudQueue() {
 		
 	}
-	
 
 // -------------- ADD TRANSACTION -------------- 
 	
@@ -33,4 +32,5 @@ public class FraudQueue {
 		
 		return FraudQueue.fraudList.get(0);
 	}
+	
 }

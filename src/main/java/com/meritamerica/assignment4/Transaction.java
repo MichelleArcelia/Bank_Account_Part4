@@ -6,6 +6,7 @@ import java.util.Date;
 
 public abstract class Transaction {
 
+	
 //============== VARIABLES ==============
 
 	private double amount;
